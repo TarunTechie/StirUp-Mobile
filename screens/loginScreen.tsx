@@ -12,11 +12,11 @@ export default function LoginScreen()
             <TextInput style={styles.fields} />
             <Text style={styles.label}>Password</Text>
             <TextInput style={styles.fields} />
-            <TouchableOpacity onPress={()=>{api.get('/')}}>
+            <TouchableOpacity>
                 <Text style={styles.button }>Login</Text>
             </TouchableOpacity>
             <Text style={{textAlign:"center",fontSize:15}} onPress={()=>{navigation.navigate("Register")}}>New Here? Sign Up</Text>
-            <Text style={{textAlign:"center",marginTop:20}}>Wanna give this app a try?</Text>
+            <Text style={{textAlign:"center",marginTop:20}} onPress={()=>{navigation.navigate("Home")}}>Wanna give this app a try?</Text>
         </SafeAreaView>
     )
 }

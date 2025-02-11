@@ -1,9 +1,10 @@
 import { SafeAreaView, TextInput ,Image,Text, TouchableOpacity} from "react-native";
 import { styles } from "../styles/styles";
-
+import { useNavigation } from "@react-navigation/native";
 
 export default function RegisterScreen()
 {
+    const navigation=useNavigation()
     return (
         <SafeAreaView style={{flex:1,justifyContent:"center"}}>
             <Image source={require("../assets/icons/logo.png")} resizeMode="contain" style={{ width: 400, marginInline: "auto" }} />
@@ -18,7 +19,7 @@ export default function RegisterScreen()
             <TouchableOpacity>
                 <Text style={styles.button }>Register</Text>
             </TouchableOpacity>
-            <Text style={{textAlign:"center"}}>Wanna give this app a try?</Text>
+            <Text style={{textAlign:"center"}} onPress={()=>{navigation.navigate("Register")}}>Wanna give this app a try?</Text>
         </SafeAreaView>
     )
 }

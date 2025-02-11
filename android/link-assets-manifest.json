@@ -1,4 +1,9 @@
 {
   "migIndex": 1,
-  "data": []
+  "data": [
+    {
+      "path": "assets/fonts/AuralyessFreeTrial-RpMrE.ttf",
+      "sha1": "b1842764b76fa3fb86adb0ae39f1803bc2b6ce41"
+    }
+  ]
 }
