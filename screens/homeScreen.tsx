@@ -1,9 +1,14 @@
-import { SafeAreaView ,Text,View} from "react-native";
+import { SafeAreaView,Text,View,TextInput,Image, ScrollView} from "react-native";
 import FeatureCard from "../components/featureCard";
+import { styles } from "../styles/styles";
+import RecipeCard from "../components/recipeCard";
+import SearchBar from "../components/searchBar";
 export default function HomeScreen()
 {
     return (
         <SafeAreaView>
+            <ScrollView>
+            <SearchBar/>
             <Text style={{ textAlign: "center", fontSize: 40 ,fontFamily:"AuralyessFreeTrial-RpMrE"}}>Unlock the Flavours</Text>
             <View style={{flexDirection:"row",justifyContent:"space-between",margin:15}}>
             <FeatureCard
@@ -20,7 +25,8 @@ export default function HomeScreen()
                 <FeatureCard
                 path={require("../assets/images/camera.jpeg")}
                 name={"Camera"}/>
-            </View>
+                </View>
+                </ScrollView>
         </SafeAreaView>
     )
 }
