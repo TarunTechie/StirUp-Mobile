@@ -6,10 +6,10 @@ import SearchBar from "../components/searchBar";
 export default function HomeScreen()
 {
     return (
-        <SafeAreaView>
-            <ScrollView>
+    <SafeAreaView>
+        <ScrollView>
             <SearchBar/>
-            <Text style={{ textAlign: "center", fontSize: 40 ,fontFamily:"AuralyessFreeTrial-RpMrE"}}>Unlock the Flavours</Text>
+            <Text style={styles.heading}>Unlock the Flavours</Text>
             <View style={{flexDirection:"row",justifyContent:"space-between",margin:15}}>
             <FeatureCard
                 path={require("../assets/images/ingri.jpeg")}
@@ -26,7 +26,12 @@ export default function HomeScreen()
                 path={require("../assets/images/camera.jpeg")}
                 name={"Camera"}/>
                 </View>
-                </ScrollView>
-        </SafeAreaView>
+                <Text style={styles.heading}>Your Meals</Text>    
+                <View style={{flexDirection:"row",marginInline:5}}>
+                    <RecipeCard />
+                    <RecipeCard/>
+                </View>
+        </ScrollView>
+    </SafeAreaView>
     )
 }

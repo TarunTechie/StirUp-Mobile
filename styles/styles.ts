@@ -15,6 +15,11 @@ export const styles = StyleSheet.create({
         marginInline: "auto",marginBlock:10,
         paddingBlock: 10,paddingInline:20,
         borderRadius:5
+    },
+    heading:
+    {
+        textAlign: "center", fontSize: 40,
+        fontFamily: "AuralyessFreeTrial-RpMrE", marginBlock: 5,
     }
 })
 
