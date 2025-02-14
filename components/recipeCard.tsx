@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import recipes from "../constants/temp";
 import { View, Image, Text, ScrollView } from "react-native";
 import Heart from "../assets/svg/heart";
@@ -16,7 +15,7 @@ export default function RecipeCard()
             </View>
             <View style={{height:1,width:"90%",margin:5,backgroundColor:"black"}}></View>
             <ScrollView nestedScrollEnabled showsVerticalScrollIndicator={false} style={{padding:5}}>
-                <RenderHTML source={{ html: recipes[0].summary }} contentWidth={10}/>
+                <RenderHTML source={{ html: recipes[0].summary }} />
             </ScrollView>
         </View>
     )
