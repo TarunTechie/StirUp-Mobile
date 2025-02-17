@@ -1,15 +1,12 @@
-import { SafeAreaView, Text ,Image,View, FlatList} from "react-native"
+import { SafeAreaView, Text ,Image,View, FlatList,ScrollView, Pressable} from "react-native"
 import recipes from "../constants/temp"
-import { ScrollView } from "react-native-gesture-handler"
 import RenderHTML from "react-native-render-html"
 import FoodType from "../assets/svg/foodType"
 import Heart from "../assets/svg/heart"
-type itemProps = {
-    name: string,
-    unit: number,
-    unitName:string
-}
-const Item = ({name,unit,unitName}:itemProps) => (
+import { useState } from "react"
+import { PreventRemoveContext } from "@react-navigation/native"
+
+const Item = ({ name, unit, unitName }: { name: string, unit: number, unitName: string }) => (
     <View style={{ flexDirection: "row",justifyContent:"space-between" ,borderBottomWidth:1,paddingBlock:5}}>
         <Text style={{ fontSize: 20 }}>{name.replace(name.charAt(0), name.charAt(0).toUpperCase())}</Text>
         <View style={{flexDirection:"row",alignItems:"baseline",marginLeft:10}}>
@@ -18,14 +15,18 @@ const Item = ({name,unit,unitName}:itemProps) => (
         </View>
     </View>
 )
-export default function RecipeScreen()
+
+export default function RecipeScreen({id}:{id:number})
 {
+    const [like,setLike]=useState("#fff")
     return (
         <SafeAreaView>
             <ScrollView>
                 <View style={{flexDirection:"row",justifyContent:"space-between",alignItems:"center",padding:5}}>
-                    <Text style={{fontFamily: "NatureBeautyPersonalUse-9Y2DK", color: "#4E070C",marginInline:"auto",fontSize:14}}>{recipes[0].title}</Text>
-                    <Heart fill={"red"} width={50} />
+                    <Text style={{ fontFamily: "NatureBeautyPersonalUse-9Y2DK", color: "#4E070C", marginInline: "auto", fontSize: 14 }}>{recipes[0].title}</Text>
+                    <Pressable onPress={()=>{setLike(like==='#fff'?'#D22701':'#fff')}}>
+                    <Heart width={50} like={like} />
+                    </Pressable>
                 </View>
                 <View style={{ flexDirection: "row", alignItems: "center", marginInline: "auto" }}>
                     <Image source={{ uri: recipes[0].image }} style={{ height: 200, width: 200, borderRadius: 10 }} resizeMode="cover" />

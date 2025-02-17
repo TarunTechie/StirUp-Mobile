@@ -1,17 +1,14 @@
 import { View, TextInput, Image, TouchableOpacity,Text ,FlatList, SafeAreaView} from 'react-native'
-import {useState} from 'react'
+import Animated,{FadeInDown,FadeOutUp} from 'react-native-reanimated'
+import { useState } from 'react'
 import { styles } from '../styles/styles'
 import spoon from '../constants/spoon'
-
-type itemProps = {
-    name:string
-}
 
 type data = {
     name: string,
     id:any
 }
-const Item = ({name}:itemProps) => (
+const Item = ({name}:{name:string}) => (
     <View style={{padding:3,borderBottomWidth:1}}>
         <Text>{name}</Text>
     </View>
@@ -20,15 +17,14 @@ export default function SearchBar()
 {
     const [search, setSearch] = useState("")
     const [food, setFood] = useState([])
-    const[visible,setVisible]=useState("none")
+    const[visible,setVisible]=useState(false)
     async function getRecipes()
     {
         try
         {
             const results = await spoon.get('food/search', { params: { 'query': search, number: 10 } })
-            console.log(results.data.searchResults[0])
             setFood(results.data.searchResults[0].results)
-            setVisible("flex")
+            setVisible(true)
         }
         catch (error)
         {
@@ -43,23 +39,26 @@ export default function SearchBar()
                 <Image source={require("../assets/icons/search.png")} resizeMode="contain" style={{ height: 35 }} />
             </TouchableOpacity>
             </View>
-            <View style={{ display: visible }}>
-            <TouchableOpacity onPress={()=>{setVisible("none")}}>
-                    <Image source={require("../assets/icons/close.png")} style={{position:"absolute",right:0}} />
-            </TouchableOpacity>
-            <FlatList<data>
-                data={food}
-                renderItem={({ item }) => <Item name={item.name} />}
-                keyExtractor={item => item.id} 
-                style={{
-                    position: "relative", backgroundColor: "white",
-                    marginInline: 22,
-                    borderWidth: 1, borderRadius: 10,borderColor:"#291010",
-                    borderTopWidth: 0, borderTopLeftRadius: 0, borderTopRightRadius: 0,
-                }}
-                initialNumToRender={3}
+
+            {visible && (<Animated.View
+                entering={FadeInDown.duration(500)}
+                exiting={FadeOutUp.duration(500)}  >
+                <TouchableOpacity onPress={() => { setVisible(false) }}>
+                    <Image source={require("../assets/icons/close.png")} style={{ position: "absolute", right: 0 }} />
+                </TouchableOpacity>
+                <FlatList<data>
+                    data={food}
+                    renderItem={({ item }) => <Item name={item.name} />}
+                    keyExtractor={item => item.id}
+                    style={{
+                        position: "relative", backgroundColor: "white",
+                        marginInline: 22,
+                        borderWidth: 1, borderRadius: 10, borderColor: "#291010",
+                        borderTopWidth: 0, borderTopLeftRadius: 0, borderTopRightRadius: 0,
+                    }}
+                    initialNumToRender={3}
                     nestedScrollEnabled={true} />
-            </View>
+            </Animated.View>)}
         </SafeAreaView>
     )
 }
