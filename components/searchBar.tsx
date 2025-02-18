@@ -3,18 +3,20 @@ import Animated,{FadeInDown,FadeOutUp} from 'react-native-reanimated'
 import { useState } from 'react'
 import { styles } from '../styles/styles'
 import spoon from '../constants/spoon'
-
+import { useNavigation } from '@react-navigation/native'
 type data = {
     name: string,
     id:any
 }
-const Item = ({name}:{name:string}) => (
-    <View style={{padding:3,borderBottomWidth:1}}>
-        <Text>{name}</Text>
-    </View>
-)
 export default function SearchBar()
 {
+    const navigation=useNavigation()
+    const Item = ({ name, id }: { name: string, id: number }) => (
+    <TouchableOpacity onPress={()=>{navigation.navigate("Recipe",{id})}}>
+        <View style={{padding:3,borderBottomWidth:1}}>
+            <Text>{name}</Text>
+        </View>
+    </TouchableOpacity>)
     const [search, setSearch] = useState("")
     const [food, setFood] = useState([])
     const[visible,setVisible]=useState(false)
@@ -34,7 +36,7 @@ export default function SearchBar()
     return (
         <SafeAreaView>
         <View style={[styles.fields,{marginTop:10,flexDirection:"row",justifyContent:"space-between",alignItems:"center"}]}>
-            <TextInput placeholder="Search A Dish" onChangeText={setSearch} />
+            <TextInput placeholder="Search A Dish" onChangeText={setSearch} style={{width:"80%"}} />
             <TouchableOpacity onPress={getRecipes}>
                 <Image source={require("../assets/icons/search.png")} resizeMode="contain" style={{ height: 35 }} />
             </TouchableOpacity>
@@ -48,7 +50,7 @@ export default function SearchBar()
                 </TouchableOpacity>
                 <FlatList<data>
                     data={food}
-                    renderItem={({ item }) => <Item name={item.name} />}
+                    renderItem={({ item }) => <Item name={item.name} id={item.id}/>}
                     keyExtractor={item => item.id}
                     style={{
                         position: "relative", backgroundColor: "white",

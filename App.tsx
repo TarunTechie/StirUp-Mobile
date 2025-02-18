@@ -12,8 +12,8 @@ export default function App(): React.JSX.Element {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Recipe" component={RecipeScreen}/>
         <Stack.Screen name="Home" component={HomeScreen} options={{header:()=><Header/>}}/>
+        <Stack.Screen name="Recipe" component={RecipeScreen}/>
         <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
