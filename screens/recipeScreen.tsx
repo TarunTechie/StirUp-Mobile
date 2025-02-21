@@ -1,5 +1,4 @@
 import { SafeAreaView, Text ,Image,View, FlatList,ScrollView, Pressable} from "react-native"
-import recipes from "../constants/temp"
 import RenderHTML from "react-native-render-html"
 import FoodType from "../assets/svg/foodType"
 import Heart from "../assets/svg/heart"
@@ -7,11 +6,15 @@ import { useEffect, useState } from "react"
 import { useRoute } from '@react-navigation/native'
 import spoon from "../constants/spoon"
 
-type Rec = {
+type RecType = {
     image: string,
     title: string,
     nutrition: any,
-    servings:number,
+    servings: number,
+    readyInMinutes: number,
+    vegetarian: boolean,
+    extendedIngredients: any,
+    instructions: string,
 }
 const Item = ({ name, unit, unitName }: { name: string, unit: number, unitName: string }) => (
     <View style={{ flexDirection: "row",justifyContent:"space-between" ,borderBottomWidth:1,paddingBlock:5}}>
@@ -26,7 +29,7 @@ const Item = ({ name, unit, unitName }: { name: string, unit: number, unitName: 
 export default function RecipeScreen()
 {
     const [like, setLike] = useState("none")
-    const [recipe, setRecipe] = useState([])
+    const [recipe, setRecipe] = useState<RecType>({}as RecType)
     const [isLoading,setLoading]=useState(true)
     const route = useRoute()
     const { id } = route.params
@@ -36,11 +39,14 @@ export default function RecipeScreen()
             const results = await spoon.get(`recipes/${id}/information`, { params: { "includeNutrition": true } })
             console.log(results.data)
             setRecipe(results.data)
-            setLoading(false)
         }
         catch (error)
         {
             console.error(error)
+        }
+        finally
+        {
+            setLoading(false)
         }
     }
     useEffect(()=>{getRecipe()},[])

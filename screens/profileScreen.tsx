@@ -1,7 +1,20 @@
 import { Text, TextInput, SafeAreaView, Image ,TouchableOpacity} from "react-native"
 import { styles } from "../styles/styles"
+import * as KeyChain from 'react-native-keychain'
+import { useEffect } from "react"
 export default function ProfileScreen()
 {
+    async function getId()
+    {
+        try {
+            const id =await KeyChain.getGenericPassword()
+            console.log(id)
+        }
+        catch (error) {
+            console.error(error)
+        }
+    }
+    useEffect(()=>{getId()},[])
     return (
         <SafeAreaView>
             <Image source={require("../assets/icons/profile.png")} style={{marginInline:"auto",height:200,marginTop:10}} resizeMode="contain" />
