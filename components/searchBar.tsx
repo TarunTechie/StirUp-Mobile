@@ -52,12 +52,7 @@ export default function SearchBar()
                     data={food}
                     renderItem={({ item }) => <Item name={item.name} id={item.id}/>}
                     keyExtractor={item => item.id}
-                    style={{
-                        position: "relative", backgroundColor: "white",
-                        marginInline: 22,
-                        borderWidth: 1, borderRadius: 10, borderColor: "#291010",
-                        borderTopWidth: 0, borderTopLeftRadius: 0, borderTopRightRadius: 0,
-                    }}
+                    style={styles.dropdown}
                     initialNumToRender={3}
                     nestedScrollEnabled={true} />
             </Animated.View>)}

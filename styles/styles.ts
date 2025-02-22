@@ -20,6 +20,12 @@ export const styles = StyleSheet.create({
     {
         textAlign: "center", fontSize: 40,
         fontFamily: "AuralyessFreeTrial-RpMrE", marginBlock: 5,
+    },
+    dropdown:
+    {
+        position: "relative",marginInline: 22,
+        borderWidth: 1, borderRadius: 10, borderColor: "#291010",
+        borderTopWidth: 0, borderTopLeftRadius: 0, borderTopRightRadius: 0,
     }
 })
 
