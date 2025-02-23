@@ -1,10 +1,10 @@
-import { Text, TextInput, SafeAreaView, Image, TouchableOpacity, View } from "react-native"
+import { Text, TextInput, SafeAreaView, Image, TouchableOpacity, View ,ScrollView} from "react-native"
 import DropDown from "../components/dropDown"
 import { styles } from "../styles/styles"
 import * as KeyChain from 'react-native-keychain'
 import { useEffect, useState } from "react"
 import api from "../constants/api"
-import { ScrollView } from "react-native-gesture-handler"
+import { cuisines,intolerances } from "../constants/lists"
 type data = {
     name: string,
     cals: number,
@@ -17,8 +17,6 @@ export default function ProfileScreen()
 {
     const [details, setDetails] = useState<data>({} as data)
     const [isLoading, setLoading] = useState(true)
-    const cuisines=["Indian","Asian","Chinese","French","Italian","Mexican","Thai","American"]
-    const intolerances=["Dairy","Egg","Gluten","Grain","Peanut","Seafood","Soy"]
     async function getDetails()
     {
         try {

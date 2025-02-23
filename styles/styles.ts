@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     fields: {
         borderWidth: 1,borderRadius: 10,
-        marginInline:20
+        marginInline:20,marginBlock:5
     },
     label: {
         fontSize: 15,

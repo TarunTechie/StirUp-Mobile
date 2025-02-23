@@ -7,15 +7,19 @@ import Header from './components/header.tsx';
 import HomeScreen from './screens/homeScreen.tsx';
 import ProfileScreen from './screens/profileScreen.tsx';
 import RecipeScreen from './screens/recipeScreen.tsx';
+import RandomScreen from './screens/randomScreen.tsx';
+import NutritionScreen from './screens/nutritionScreen.tsx';
 export default function App(): React.JSX.Element {
   const Stack=createStackNavigator()
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Home" component={HomeScreen} options={{header:()=><Header/>}}/>
+        <Stack.Screen name="Nutrition" component={NutritionScreen}/>
+        <Stack.Screen name="Random" component={RandomScreen}/>
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="Home" component={HomeScreen} options={{header:()=><Header/>}}/>
         <Stack.Screen name="Recipe" component={RecipeScreen}/>
       </Stack.Navigator>
     </NavigationContainer>

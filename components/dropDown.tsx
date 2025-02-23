@@ -11,7 +11,6 @@ export default function DropDown({ data }: { data: string[] })
         transform:[{rotateX:`${rotate.value}deg`}]
     }))
     const AnimatedImage = Animated.createAnimatedComponent(Image)
-    const AnimatedList = Animated.createAnimatedComponent(FlatList)
     type data = {
         name: string,
         id:any
