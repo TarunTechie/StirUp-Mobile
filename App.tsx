@@ -9,11 +9,13 @@ import ProfileScreen from './screens/profileScreen.tsx';
 import RecipeScreen from './screens/recipeScreen.tsx';
 import RandomScreen from './screens/randomScreen.tsx';
 import NutritionScreen from './screens/nutritionScreen.tsx';
+import IngredientsScreen from './screens/ingridientsScreen.tsx';
 export default function App(): React.JSX.Element {
   const Stack=createStackNavigator()
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Ingridients" component={IngredientsScreen}/>
         <Stack.Screen name="Home" component={HomeScreen} options={{header:()=><Header/>}}/>
         <Stack.Screen name="Nutrition" component={NutritionScreen}/>
         <Stack.Screen name="Random" component={RandomScreen}/>

@@ -3,7 +3,8 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
     fields: {
         borderWidth: 1,borderRadius: 10,
-        marginInline:20,marginBlock:5
+        marginInline: 20, marginBlock: 5,
+        backgroundColor:"white"
     },
     label: {
         fontSize: 15,
@@ -19,13 +20,13 @@ export const styles = StyleSheet.create({
     heading:
     {
         textAlign: "center", fontSize: 40,
-        fontFamily: "AuralyessFreeTrial-RpMrE", marginBlock: 5,
+        fontFamily: "AuralyessFreeTrial-RpMrE", marginBlock: 5,paddingBottom:10
     },
     dropdown:
     {
         position: "relative",marginInline: 22,
         borderWidth: 1, borderRadius: 10, borderColor: "#291010",
         borderTopWidth: 0, borderTopLeftRadius: 0, borderTopRightRadius: 0,
-    }
+    },
 })
 

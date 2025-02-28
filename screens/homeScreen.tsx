@@ -9,13 +9,15 @@ export default function HomeScreen()
     const navigation=useNavigation()
     return (
     <SafeAreaView>
-        <ScrollView>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 10 }} >
             <SearchBar/>
             <Text style={styles.heading}>Unlock the Flavours</Text>
-            <View style={{flexDirection:"row",justifyContent:"space-between",margin:15}}>
+                <View style={{ flexDirection: "row", justifyContent: "space-around", marginBlock: 15 }}>
+            <Pressable onPress={()=>navigation.navigate('Ingridients')}>
             <FeatureCard
                 path={require("../assets/images/ingri.jpeg")}
                 name={"Ingredients"} />
+            </Pressable>
                     
             <Pressable onPress={()=>navigation.navigate("Nutrition")}>
             <FeatureCard
@@ -24,21 +26,18 @@ export default function HomeScreen()
             </Pressable>  
                     
             </View>
-            <View style={{flexDirection:"row",justifyContent:"space-between",margin:15}}>
+            <View style={{flexDirection:"row",justifyContent:"space-around",marginBlock:15}}>
             <Pressable onPress={()=>navigation.navigate("Random")}>
             <FeatureCard
                 path={require("../assets/images/suprise.jpeg")}
                 name={"Suprise"}/>
             </Pressable> 
-                <FeatureCard
-                path={require("../assets/images/camera.jpeg")}
-                name={"Camera"}/>
                 </View>
                 <Text style={styles.heading}>Your Meals</Text>    
-                <View style={{flexDirection:"row",marginInline:5}}>
+                <ScrollView contentContainerStyle={{flexDirection:"row",marginInline:5}} horizontal={true}>
                     <RecipeCard />
                     <RecipeCard/>
-                </View>
+                </ScrollView>
         </ScrollView>
     </SafeAreaView>
     )
