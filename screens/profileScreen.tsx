@@ -4,7 +4,9 @@ import { styles } from "../styles/styles"
 import * as KeyChain from 'react-native-keychain'
 import { useEffect, useState } from "react"
 import api from "../constants/api"
-import { cuisines,intolerances } from "../constants/lists"
+import { cuisines, intolerances } from "../constants/lists"
+import { useNavigation } from "@react-navigation/native"
+import Loader from "../components/Loader"
 type data = {
     name: string,
     cals: number,
@@ -17,6 +19,8 @@ export default function ProfileScreen()
 {
     const [details, setDetails] = useState<data>({} as data)
     const [isLoading, setLoading] = useState(true)
+    const [logged, setLogged] = useState(false)
+    const navigate=useNavigation()
     async function getDetails()
     {
         try {
@@ -24,31 +28,24 @@ export default function ProfileScreen()
             if (id)
             {
                 console.log(id)
-                try
-                {
-                    const result = await api.get('/getUser', { params: { "id": id.password } })
-                    setDetails(result.data[0])
-                }
-                catch(error)
-                {
-                    console.error(error)
-                }
-                finally
-                {
-                    setLoading(false)
-                }
+                const result = await api.get('/getUser', { params: { "id": id.password },timeout:3000 })
+                setDetails(result.data[0])
+                setLogged(true)
             }
         }
         catch (error)
         {
             console.log(error)
         }
+        finally
+        {
+            setLoading(false)
+        }
     }
     useEffect(()=>{getDetails()},[])
     return (
-        isLoading ? (<View style={{justifyContent:"center",alignItems:"center",flex:1}}>
-            <Text>LOADING</Text>
-        </View>) :
+        isLoading ? <Loader/> :
+            (logged ?
             (<SafeAreaView>
                 <ScrollView>
             <Image source={require("../assets/icons/profile.png")} style={{marginInline:"auto",height:200,marginTop:10}} resizeMode="contain" />
@@ -70,6 +67,11 @@ export default function ProfileScreen()
                     <Text style={[styles.button,{backgroundColor:"red"}]}>Delete Profile</Text>
             </TouchableOpacity>
             </ScrollView>
-        </SafeAreaView>)
+            </SafeAreaView>)
+                : (<SafeAreaView style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
+                    <TouchableOpacity  onPress={()=>{navigate.navigate('Login')}}>
+                    <Text style={styles.button}>PLEASE LOGIN</Text>
+                    </TouchableOpacity>
+            </SafeAreaView>))
     )
 }

@@ -16,11 +16,11 @@ export default function App(): React.JSX.Element {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} options={{header:()=><Header/>}}/>
+        <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="Ingridients" component={IngredientsScreen}/>
         <Stack.Screen name="Nutrition" component={NutritionScreen}/>
         <Stack.Screen name="Suprise" component={RandomScreen}/>
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="Login" component={LoginScreen}/>
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="Recipe" component={RecipeScreen}/>
       </Stack.Navigator>

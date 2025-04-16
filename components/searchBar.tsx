@@ -35,7 +35,7 @@ export default function SearchBar()
     }
     return (
         <SafeAreaView>
-        <View style={[styles.fields,{marginTop:10,flexDirection:"row",justifyContent:"space-between",alignItems:"center"}]}>
+        <View style={[styles.fields,{marginTop:10,flexDirection:"row",justifyContent:"space-between",alignItems:"center",backgroundColor:"white"}]}>
             <TextInput placeholder="Search A Dish" onChangeText={setSearch} style={{width:"80%"}} />
             <TouchableOpacity onPress={getRecipes}>
                 <Image source={require("../assets/icons/search.png")} resizeMode="contain" style={{ height: 35 }} />

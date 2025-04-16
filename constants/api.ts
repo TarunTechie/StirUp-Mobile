@@ -1,6 +1,6 @@
 import axios from "axios";
 import {STIRUP_API} from "@env"
 const api = axios.create({
-    baseURL:STIRUP_API
+    baseURL:STIRUP_API || "http//localhost:5000"
 })
 export default api
