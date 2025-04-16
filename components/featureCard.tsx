@@ -1,18 +1,26 @@
-import { View, Image, Text, Dimensions } from "react-native"
+import { View, Image, Text, Dimensions, Pressable } from "react-native"
+import { useNavigation } from "@react-navigation/native"
 import { styles } from "../styles/styles"
 type props = {
     path: any,
-    name:string
+    name: string,
+    navTo:string
 }
 
-const screenWidth=Dimensions.get("window").width
-export default function FeatureCard({path,name}:props)
+const screenWidth = Dimensions.get("window").width
+const cardWidth = screenWidth * 0.7
+const cardSpacing=20
+export default function FeatureCard({path,name,navTo}:props)
 {
+    const navigation=useNavigation()
     return (
-        <View>
-            <Image source={path} style={{ width: screenWidth*0.45,borderRadius:10,aspectRatio:0.6,height:"auto"}} resizeMode="cover" />
-            <Text style={{position:"absolute",color:"white",backgroundColor: "#FF670E",bottom:-10,padding:5,paddingInline:10,left:screenWidth*0.1,
-                        fontWeight: "bold",fontSize:15,borderRadius:10,textAlign:"center"}}>{name}</Text>
+        <View style={{ width: cardWidth,marginRight:cardSpacing }}>
+            <View style={{ marginInline: "auto" }}>
+        <Pressable onPress={()=>{navigation.navigate(navTo)}} >
+                <Image source={path} style={{width: "100%", borderRadius: 10, aspectRatio: 0.6, height: "auto" }} resizeMode="cover" />
+        </Pressable>
+                <Text style={[styles.button,{width:"auto",position:"absolute",left:screenWidth*0.15,bottom:0}]}>{name}</Text>
+            </View>
         </View>
     )
 }
