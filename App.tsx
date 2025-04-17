@@ -10,9 +10,12 @@ import RecipeScreen from './screens/recipeScreen.tsx';
 import RandomScreen from './screens/randomScreen.tsx';
 import NutritionScreen from './screens/nutritionScreen.tsx';
 import IngredientsScreen from './screens/ingridientsScreen.tsx';
+import { QueryClient,QueryClientProvider } from '@tanstack/react-query';
 export default function App(): React.JSX.Element {
-  const Stack=createStackNavigator()
+  const Stack = createStackNavigator()
+  const queryClient=new QueryClient()
   return (
+    <QueryClientProvider client={queryClient}>
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} options={{header:()=><Header/>}}/>
@@ -25,6 +28,7 @@ export default function App(): React.JSX.Element {
         <Stack.Screen name="Recipe" component={RecipeScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
+    </QueryClientProvider>
   );
 }
 

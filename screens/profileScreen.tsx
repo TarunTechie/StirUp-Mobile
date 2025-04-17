@@ -7,6 +7,7 @@ import api from "../constants/api"
 import { cuisines, intolerances } from "../constants/lists"
 import { useNavigation } from "@react-navigation/native"
 import Loader from "../components/Loader"
+import { useQuery } from "@tanstack/react-query"
 type data = {
     name: string,
     cals: number,
@@ -28,7 +29,7 @@ export default function ProfileScreen()
             if (id)
             {
                 console.log(id)
-                const result = await api.get('/getUser', { params: { "id": id.password },timeout:3000 })
+                const result = await api.get('/getUser', { params: { "id": id.password },timeout:10000 })
                 setDetails(result.data[0])
                 setLogged(true)
             }

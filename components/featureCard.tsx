@@ -19,7 +19,7 @@ export default function FeatureCard({path,name,navTo}:props)
         <Pressable onPress={()=>{navigation.navigate(navTo)}} >
                 <Image source={path} style={{width: "100%", borderRadius: 10, aspectRatio: 0.6, height: "auto" }} resizeMode="cover" />
         </Pressable>
-                <Text style={[styles.button,{width:"auto",position:"absolute",left:screenWidth*0.15,bottom:0}]}>{name}</Text>
+                <Text style={[styles.button,{width:"auto",position:"absolute",left:cardWidth/3,bottom:0}]}>{name}</Text>
             </View>
         </View>
     )
