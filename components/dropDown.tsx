@@ -2,7 +2,7 @@ import { View ,FlatList,TextInput,Text,Image, Pressable} from "react-native"
 import { styles } from "../styles/styles"
 import { useState } from 'react'
 import Animated,{FadeInDown, useAnimatedStyle,useSharedValue} from 'react-native-reanimated'
-export default function DropDown({ data }: { data: string[] })
+export default function DropDown({ data,onSelect }: { data: string[],onSelect:(value:String)=>void })
 {
     const [visible, setVisible] = useState(false)
     const [value,setValue]=useState("Select from Dropdown")
@@ -21,8 +21,9 @@ export default function DropDown({ data }: { data: string[] })
         rotate.value=rotate.value==180?0:180
     }
 
+
     const Item = ({name}:{name:string}) => (
-        <Pressable onPress={() => { setValue(name) }}>
+        <Pressable onPress={() => { onSelect(name); setValue(name);changeState() }}>
             <Text style={{ padding: 3, borderBottomWidth: 1 }}>{name}</Text>
         </Pressable>
     )

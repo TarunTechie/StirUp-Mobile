@@ -4,8 +4,18 @@ import FoodType from '../assets/svg/foodType'
 import { styles } from '../styles/styles'
 import { diets} from '../constants/lists'
 import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import spoon from '../constants/spoon'
 export default function NutritionScreen()
 {
+    async function getMeals()
+    { 
+        try {
+            const result=await spoon.get()
+        } catch (error) {
+            throw error
+        }
+    }
     const Item = ({ item }: { item: string }) => (<Pressable style={styles.button}></Pressable>)
     const [veg,setVeg]=useState(false)
     return (

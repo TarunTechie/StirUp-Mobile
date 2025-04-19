@@ -24,7 +24,7 @@ export default function IngridientsScreen() {
     console.log('Called');
     try {
       const results = await spoon.get('recipes/findByIngredients', {
-        params: {ingredients: list.toString()},
+        params: {ingredients: list.toString(),'number':6},
       });
       return results.data;
     } catch (error) {
