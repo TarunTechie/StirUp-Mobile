@@ -24,8 +24,8 @@ export const styles = StyleSheet.create({
     },
     dropdown:
     {
-        position: "relative",marginInline: 22,
-        borderWidth: 1, borderRadius: 10, borderColor: "#291010",
+        position: "relative",marginInline: 22,zIndex:10,
+        borderWidth: 1, borderRadius: 10, borderColor: "#291010",backgroundColor:"white",
         borderTopWidth: 0, borderTopLeftRadius: 0, borderTopRightRadius: 0,
     },
 })

@@ -1,8 +1,8 @@
-import { View ,FlatList,TextInput,Text,Image, Pressable} from "react-native"
+import { View ,ScrollView,Text,Image, Pressable} from "react-native"
 import { styles } from "../styles/styles"
 import { useState } from 'react'
 import Animated,{FadeInDown, useAnimatedStyle,useSharedValue} from 'react-native-reanimated'
-export default function DropDown({ data,onSelect }: { data: string[],onSelect:(value:String)=>void })
+export default function DropDown({ data,onSelect }: { data: string[],onSelect:(value:string)=>void })
 {
     const [visible, setVisible] = useState(false)
     const [value,setValue]=useState("Select from Dropdown")
@@ -28,7 +28,7 @@ export default function DropDown({ data,onSelect }: { data: string[],onSelect:(v
         </Pressable>
     )
     return (
-        <View>
+        <View style={{maxHeight:100,backgroundColor:"white",zIndex:10}}>
             <View style={[styles.fields,{flexDirection:"row",justifyContent:"space-between",alignItems:"center"}]}>
                 <Text style={{marginLeft:10}}>{value}</Text>
                 <Pressable onPress={() => {changeState()}}>
@@ -39,12 +39,16 @@ export default function DropDown({ data,onSelect }: { data: string[],onSelect:(v
                 <Animated.View
                 entering={FadeInDown.duration(500)}
                 >
-                <FlatList<string>
-                style={styles.dropdown}
-                data={data}
-                        renderItem={({ item }) => <Item name={item} />} />
+                    <ScrollView
+                    style={styles.dropdown}
+                    nestedScrollEnabled
+                    showsVerticalScrollIndicator={false} >
+                    {data.map((item) => (
+                    <Item key={item} name={item} />
+                    ))}
+                    </ScrollView>
                 </Animated.View>
-                }
+            }
         </View>
     )
 }

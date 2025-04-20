@@ -7,10 +7,10 @@ import { useState } from "react";
 export default function LoginScreen()
 {
     const navigation = useNavigation()
-    const [details, setDetails] = useState([])
+    const [details, setDetails] = useState(['a','b'])
     async function login()
     {
-        console.log(details)
+        console.log(details.length)
         try
         {
             const results = await api.post('/login', details)
@@ -28,7 +28,7 @@ export default function LoginScreen()
                 }
                 else
                 {
-                    console.log("User not found")
+                    setDetails([])
                 }
         }
         catch (error)
@@ -52,7 +52,10 @@ export default function LoginScreen()
                 <Text style={styles.button }>Login</Text>
             </TouchableOpacity>
             <Text style={{textAlign:"center",fontSize:15}} onPress={()=>{navigation.navigate("Register")}}>New Here? Sign Up</Text>
-            <Text style={{textAlign:"center",marginTop:20}} onPress={()=>{navigation.navigate("Home")}}>Wanna give this app a try?</Text>
+            <Text style={{ textAlign: "center", marginTop: 20 }} onPress={() => { navigation.navigate("Home") }}>Wanna give this app a try?</Text>
+            { details.length!==0?null:
+                <Text style={{ textAlign: "center", marginTop: 20, fontSize: 20, color: "red" }} onPress={() => { navigation.navigate("Home") }}>User not Registered!!</Text>
+            }
         </SafeAreaView>
     )
 }

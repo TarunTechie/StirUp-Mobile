@@ -50,6 +50,7 @@ export default function HomeScreen() {
           <FoodCard
             title={recipes[0].title}
             image={recipes[0].image.toString()}
+            id={recipes[0].id}
           />
         </ScrollView>
       </ScrollView>

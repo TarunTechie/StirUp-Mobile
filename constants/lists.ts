@@ -12,8 +12,8 @@ export const features = [
     {
         id:"nut",
         path: require("../assets/images/nutrition.jpeg"),
-        name: "Nutrition",
-        navTo:"Nutrition"
+        name: "Biteplan",
+        navTo:"Biteplan"
     },
     {
         id:"sup",
